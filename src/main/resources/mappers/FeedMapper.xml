@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.green.practice.feed.FeedMapper">
+    <insert id="insFeed">
+        INSERT INTO feed
+           SET user_id = #{userId}
+             , content = #{content}
+             , title = #{title}
+    </insert>
+
+    <delete id="delFeedLikeAndFeedPic">
+        DELETE B, C
+        FROM feed A
+        LEFT JOIN feed_like B
+        ON A.plan_master_id = B.plan_master_id
+        LEFT JOIN feed_pic C
+        ON A.feed_id = C.feed_id
+        WHERE A.plan_master_id = #{planMasterId}
+        AND A.plan_master_id = #{signedUserId}
+    </delete>
+
+    <delete id="delFeed">
+        DELETE FROM feed
+        WHERE plan_master_id = #{planMasterId}
+        AND plan_master_id = #{signedUserId}
+    </delete>
+</mapper>
