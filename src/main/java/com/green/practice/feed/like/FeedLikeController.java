@@ -20,6 +20,7 @@ public class FeedLikeController {
                              .build();
     }
 
+
     @DeleteMapping
     public ResultResponse<Integer> feedDeleteLike(@RequestBody FeedLikeReq p) {
         int result = feedLikeService.delLike(p);
